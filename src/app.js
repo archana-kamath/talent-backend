@@ -1,16 +1,19 @@
-/*require('dotenv').config();
+require('dotenv').config();
 const express = require('express')
 const aws = require('aws-sdk');
 const fs = require('fs');
 var path = require('path');
 
+
 const app = express();
 app.use(express.json());
 
-var userInfo = require('./routes/userInfo')
-var addJobInfo = require('./routes/addJob')
-var viewJobInfo = require('./routes/viewJob')
-var uploadResume = require('./routes/uploadResume')
+var apply = require('../routes/applyToJob')
+var userInfo = require('../routes/userInfo')
+var addJobInfo = require('../routes/addJob')
+var viewJobInfo = require('../routes/viewJob')
+var uploadResume = require('../routes/uploadResume')
+var fetchUser = require('../routes/fetchUser')
 
   // CORS Headers => Required for cross-origin/ cross-server communication
   app.use((req, res, next) => {
@@ -23,20 +26,16 @@ var uploadResume = require('./routes/uploadResume')
     next();
   });
 
+
+  app.use('/', apply);
   app.use('/', userInfo);
   app.use('/', uploadResume);
   app.use('/', addJobInfo);
-  app.use('/', viewJobInfo)
+  app.use('/', viewJobInfo);
+  app.use('/', fetchUser);
+  
+  app.get("/test", (_req, res) =>  {
+    res.status(200).send("Hello world")
+  })
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, console.log(`Server started on port ${PORT}`));
-
-module.exports = app;*/
-
-const express = require("express");
-const app = express();
-
-app.get("/test", (_req, res) =>  {
-  res.status(200).send("Hello world")
-})
 module.exports = app;

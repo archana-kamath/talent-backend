@@ -21,7 +21,7 @@ router.post('/addJob', function (req, res) {
 
     let {
         jobTitle, jobDesc,postedBy,postedOn,company,
-        yoe,jobLocation,jobType} = req.body
+        yoe,jobLocation,jobType,jobSalary} = req.body
 
         console.log(jobTitle)
         console.log(jobDesc)
@@ -31,16 +31,17 @@ router.post('/addJob', function (req, res) {
         console.log(yoe)
         console.log(jobLocation)
         console.log(jobType)
+        console.log(jobSalary)
 
-var column_name = "jobTitle,jobDesc,postedBy,postedOn,company,yoe,jobLocation,jobType";
-var column_values = "'"+jobTitle+"','"+jobDesc+"','"+postedBy+"','"+postedOn+"','"+company+"','"+yoe+"','"+jobLocation+"','"+jobType+"'";
+var column_name = "jobTitle,jobDesc,postedBy,postedOn,company,yoe,jobLocation,jobType,jobSalary";
+var column_values = "'"+jobTitle+"','"+jobDesc+"','"+postedBy+"','"+postedOn+"','"+company+"','"+yoe+"','"+jobLocation+"','"+jobType+"','"+jobSalary+"'";
 var sql = "INSERT INTO job ( "+ column_name + " ) VALUES (" + column_values+ ")";
 
 console.log(sql)
 
         con.query(sql, function (err, result) {
             if (err) throw err;
-            console.log("1 record inserted");
+            console.log("Job Added");
         });
 });
 
