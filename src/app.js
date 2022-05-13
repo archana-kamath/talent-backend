@@ -34,6 +34,7 @@ var fetchUser = require('../routes/fetchUser')
   app.use('/', viewJobInfo);
   app.use('/', fetchUser);
   
+  // to test backend
   app.get("/test", (_req, res) =>  {
     res.status(200).send("Hello world")
   })
